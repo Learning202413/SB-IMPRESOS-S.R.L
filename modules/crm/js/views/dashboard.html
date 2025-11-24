@@ -1,0 +1,86 @@
+<header class="flex items-center justify-between pb-6 border-b border-gray-200 mb-8">
+    <div class="flex items-center">
+        <button id="sidebar-toggle" class="mr-4 p-2 rounded-full hover:bg-gray-200 text-gray-600 transition">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+        <div>
+            <h1 class="text-3xl font-bold text-gray-800">Dashboard General</h1>
+            <p class="text-sm text-gray-500 mt-1">Métricas en tiempo real del CRM</p>
+        </div>
+    </div>
+    <div class="hidden md:flex items-center">
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">
+            <i data-lucide="layout-dashboard" class="w-3 h-3 mr-1"></i> Módulo CRM
+        </span>
+    </div>
+</header>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-8">
+    
+    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-500 hover:shadow-2xl transition-shadow duration-300">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Cotizaciones Activas</p>
+                <p id="kpi-quotes" class="text-4xl font-bold text-gray-900 mt-2">0</p>
+                <p class="text-xs text-gray-500 mt-1">Nuevas + En Negociación</p>
+            </div>
+            <div class="p-3 bg-yellow-100 rounded-full">
+                <i data-lucide="file-clock" class="w-8 h-8 text-yellow-600"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-600 hover:shadow-2xl transition-shadow duration-300">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">OTs En Producción</p>
+                <p id="kpi-production" class="text-4xl font-bold text-gray-900 mt-2">0</p>
+                <p class="text-xs text-gray-500 mt-1">En planta / Proceso</p>
+            </div>
+            <div class="p-3 bg-blue-100 rounded-full">
+                <i data-lucide="settings" class="w-8 h-8 text-blue-600"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500 hover:shadow-2xl transition-shadow duration-300">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Rechazadas</p>
+                <p id="kpi-rejected" class="text-4xl font-bold text-gray-900 mt-2">0</p>
+                <p class="text-xs text-gray-500 mt-1">No concretadas / Canceladas</p>
+            </div>
+            <div class="p-3 bg-red-100 rounded-full">
+                <i data-lucide="x-circle" class="w-8 h-8 text-red-600"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-600 hover:shadow-2xl transition-shadow duration-300">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Completadas Total</p>
+                <p id="kpi-completed" class="text-4xl font-bold text-gray-900 mt-2">0</p>
+                <p class="text-xs text-gray-500 mt-1">Finalizadas exitosamente</p>
+            </div>
+            <div class="p-3 bg-green-100 rounded-full">
+                <i data-lucide="check-circle" class="w-8 h-8 text-green-600"></i>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="bg-gray-50 rounded-xl border-2 border-dashed border-gray-200 p-8 text-center hidden max-w-5xl mx-auto">
+    <p class="text-gray-400">Espacio reservado para gráficas de rendimiento mensual.</p>
+</div>
+
+<div id="modal-content" class="hidden">
+    <h3 id="modal-title" class="text-xl font-bold mb-4 text-gray-800">Notificación</h3>
+    <p id="modal-body" class="text-gray-600 mb-6">Mensaje del sistema.</p>
+    <div class="flex justify-end">
+        <button onclick="window.UI.hideModal('modal-container')" class="px-4 py-2 bg-red-600 text-white text-base font-medium rounded-lg shadow-sm hover:bg-red-700 focus:outline-none transition">
+            Cerrar
+        </button>
+    </div>
+</div>
