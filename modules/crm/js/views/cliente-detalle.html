@@ -1,0 +1,154 @@
+<header class="flex items-center justify-between pb-6 border-b border-gray-200 mb-8">
+    <div class="flex items-center">
+        <button id="sidebar-toggle" class="mr-4 p-2 rounded-full hover:bg-gray-200 text-gray-600 transition">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+        <div>
+            <h1 id="client-header" class="text-3xl font-bold text-gray-800">Detalle del Cliente</h1>
+            <p class="text-sm text-gray-500 mt-1">Gestión de información y contactos</p>
+        </div>
+    </div>
+</header>
+
+<div class="bg-white shadow-xl shadow-gray-200/50 rounded-xl overflow-hidden border border-gray-100 relative">
+    
+    <div class="border-b border-gray-100 bg-gray-50/50 px-8 pt-2">
+        <nav class="flex space-x-8" aria-label="Tabs">
+            <button type="button" data-tab="details" class="tab-button border-b-2 py-4 px-1 text-sm font-medium border-red-600 text-red-600 hover:text-red-700 transition duration-150 tab-active">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="info" class="w-4 h-4"></i>
+                    <span>Información General</span>
+                </div>
+            </button>
+            <button type="button" data-tab="history" class="tab-button border-b-2 py-4 px-1 text-sm font-medium border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition duration-150">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="archive" class="w-4 h-4"></i>
+                    <span>Historial de Órdenes</span>
+                </div>
+            </button>
+        </nav>
+    </div>
+    
+    <div class="p-8">
+        <div id="tab-details" class="tab-content animate-fade-in-up">
+            <form id="client-form" class="space-y-8">
+                
+                <div class="bg-gray-50 p-5 rounded-xl border border-gray-200/60">
+                    <span class="block text-sm font-bold text-gray-700 mb-4 uppercase tracking-wide text-xs">Tipo de Cliente</span>
+                    <div class="flex flex-col sm:flex-row sm:space-x-8 space-y-3 sm:space-y-0">
+                        <label class="flex items-center cursor-pointer group">
+                            <div class="relative flex items-center justify-center w-5 h-5 mr-3">
+                                <input type="radio" name="tipo_persona" value="NATURAL" class="peer appearance-none w-5 h-5 border-2 border-gray-300 rounded-full checked:border-red-600 checked:border-4 transition-all" checked>
+                                <div class="w-2.5 h-2.5 bg-white rounded-full absolute pointer-events-none opacity-0 peer-checked:opacity-100"></div>
+                            </div>
+                            <span class="text-sm text-gray-700 font-medium group-hover:text-red-600 transition-colors">Persona Natural (DNI)</span>
+                        </label>
+                        
+                        <label class="flex items-center cursor-pointer group">
+                             <div class="relative flex items-center justify-center w-5 h-5 mr-3">
+                                <input type="radio" name="tipo_persona" value="JURIDICA" class="peer appearance-none w-5 h-5 border-2 border-gray-300 rounded-full checked:border-red-600 checked:border-4 transition-all">
+                                <div class="w-2.5 h-2.5 bg-white rounded-full absolute pointer-events-none opacity-0 peer-checked:opacity-100"></div>
+                            </div>
+                            <span class="text-sm text-gray-700 font-medium group-hover:text-red-600 transition-colors">Empresa / Jurídica (RUC)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label id="lbl-doc" for="ruc" class="block text-sm font-semibold text-gray-700 mb-1.5">RUC/Identificación Fiscal <span class="text-red-500">*</span></label>
+                            <div class="flex gap-2">
+                                <div class="relative group w-full">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i data-lucide="hash" class="h-4 w-4 text-gray-400 group-focus-within:text-red-500 transition-colors"></i>
+                                    </div>
+                                    <input type="text" id="ruc" name="ruc" required maxlength="11" class="block w-full pl-10 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 text-sm transition-shadow form-input bg-white" placeholder="Ej: 20123456789">
+                                </div>
+                                <button type="button" id="btn-search-doc" class="flex-shrink-0 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-md hover:shadow-lg focus:ring-2 focus:ring-blue-500 focus:ring-offset-1" title="Buscar en SUNAT/RENIEC">
+                                    <i data-lucide="search" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                            <p id="hint-doc" class="text-xs text-gray-500 mt-1.5 ml-1">Debe tener 11 dígitos.</p>
+                        </div>
+                        
+                        <div>
+                            <label id="lbl-contact" for="nombre_contacto" class="block text-sm font-semibold text-gray-700 mb-1.5">Contacto Referencia <span class="text-red-500">*</span></label>
+                             <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i data-lucide="user" class="h-4 w-4 text-gray-400 group-focus-within:text-red-500 transition-colors"></i>
+                                </div>
+                                <input type="text" id="nombre_contacto" name="nombre_contacto" required maxlength="100" class="block w-full pl-10 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 text-sm transition-shadow form-input" placeholder="Ej: Juan Pérez">
+                            </div>
+                             <p id="hint-contact" class="text-xs text-gray-500 mt-1.5 ml-1 hidden"></p>
+                        </div>
+
+                         <div>
+                            <label id="lbl-phone" for="telefono" class="block text-sm font-semibold text-gray-700 mb-1.5">Teléfono <span class="text-red-500">*</span></label>
+                             <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i data-lucide="phone" class="h-4 w-4 text-gray-400 group-focus-within:text-red-500 transition-colors"></i>
+                                </div>
+                                <input type="text" id="telefono" name="telefono" maxlength="50" class="block w-full pl-10 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 text-sm transition-shadow form-input" placeholder="+51 999 999 999">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label id="lbl-name" for="razon_social" class="block text-sm font-semibold text-gray-700 mb-1.5">Razón Social/Empresa <span class="text-red-500">*</span></label>
+                            <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i data-lucide="building-2" class="h-4 w-4 text-gray-400 group-focus-within:text-red-500 transition-colors"></i>
+                                </div>
+                                <input type="text" id="razon_social" name="razon_social" required maxlength="100" class="block w-full pl-10 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 text-sm transition-shadow form-input" placeholder="Ej: Mi Empresa S.A.C.">
+                            </div>
+                        </div>
+
+                         <div>
+                            <label id="lbl-email" for="email" class="block text-sm font-semibold text-gray-700 mb-1.5">Email <span class="text-red-500">*</span></label>
+                            <div class="relative group">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i data-lucide="mail" class="h-4 w-4 text-gray-400 group-focus-within:text-red-500 transition-colors"></i>
+                                </div>
+                                <input type="email" id="email" name="email" required maxlength="100" class="block w-full pl-10 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-red-500 text-sm transition-shadow form-input" placeholder="contacto@empresa.com">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-10 pt-6 border-t border-gray-100 flex flex-col-reverse sm:flex-row justify-between items-center gap-4">
+                    <a href="#/clientes" class="w-full sm:w-auto px-6 py-2.5 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-50 font-medium text-sm transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-200 flex items-center justify-center">
+                        <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+                        Volver
+                    </a>
+                    <div class="w-full sm:w-auto flex flex-col sm:flex-row gap-3">
+                        <a id="btn-create-quote" href="#/orden-detalle" class="w-full sm:w-auto px-6 py-2.5 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-medium text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center transform active:scale-95">
+                            <i data-lucide="file-plus" class="w-4 h-4 mr-2"></i>
+                            Crear Cotización
+                        </a>
+                        <button type="submit" id="btn-save-client" class="w-full sm:w-auto px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center transform active:scale-95 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                            <i data-lucide="save" class="w-4 h-4 mr-2"></i>
+                            Guardar Cliente
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div id="tab-history" class="tab-content hidden animate-fade-in-up">
+            <h3 class="text-lg font-bold text-gray-800 mb-4">Historial de Órdenes</h3>
+            <div class="bg-blue-50 border border-blue-100 rounded-xl p-6 flex items-start space-x-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                    <i data-lucide="info" class="w-5 h-5 text-blue-600"></i>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-blue-800">Información del Sistema</h4>
+                    <p class="text-sm text-blue-600 mt-1">
+                        El historial de órdenes se cargará automáticamente desde el módulo de Producción una vez que se registren cotizaciones o trabajos para este cliente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

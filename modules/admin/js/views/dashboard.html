@@ -1,0 +1,109 @@
+<header class="flex items-center justify-between pb-6 border-b border-gray-200 mb-8">
+    <div class="flex items-center">
+        <button id="sidebar-toggle" class="mr-4 p-2 rounded-full hover:bg-gray-200 text-gray-600 transition">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+        <h1 class="text-3xl font-bold text-gray-800">Dashboard Gerencial</h1>
+    </div>
+    <span class="text-sm text-gray-500">Módulo: Admin</span>
+</header>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+    <div class="bg-white p-6 rounded-xl shadow-xl border-l-4 border-red-500">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm font-medium text-gray-500 uppercase">Alertas Críticas</p>
+                <p class="text-4xl font-bold text-gray-900">...</p>
+                <p class="text-sm text-gray-500">Ítems con Stock Bajo</p>
+            </div>
+            <div class="p-3 bg-red-100 rounded-full">
+                <i data-lucide="alert-triangle" class="w-8 h-8 text-red-600"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow-xl border-l-4 border-green-500">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm font-medium text-gray-500 uppercase">OTs Completadas (Mes)</p>
+                <p class="text-4xl font-bold text-gray-900">...</p>
+                <p class="text-sm text-gray-500">Total OTs del mes</p>
+            </div>
+            <div class="p-3 bg-green-100 rounded-full">
+                <i data-lucide="check-circle" class="w-8 h-8 text-green-600"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow-xl border-l-4 border-blue-500">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm font-medium text-gray-500 uppercase">Usuarios Conectados</p>
+                <p class="text-4xl font-bold text-gray-900">...</p>
+                <p class="text-sm text-gray-500">En tiempo real (Presence)</p>
+            </div>
+            <div class="p-3 bg-blue-100 rounded-full">
+                <i data-lucide="activity" class="w-8 h-8 text-blue-600"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    
+    <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-xl">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="font-bold text-gray-700">Tendencia de Producción (Últimos 4 Meses)</h3>
+            <span class="text-xs font-semibold bg-gray-100 text-gray-600 px-2 py-1 rounded">OTs / Mes</span>
+        </div>
+        
+        <div class="h-64 flex items-end justify-between space-x-2 px-4 border-b border-l border-gray-200 pb-2">
+            
+            <div class="flex flex-col items-center flex-1 group cursor-pointer">
+                <div class="relative w-full max-w-[3rem] bg-blue-300 hover:bg-blue-400 transition-all duration-300 rounded-t-md h-[40%] shadow-sm">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                        85 OTs
+                    </div>
+                </div>
+                <span class="text-xs text-gray-500 mt-2 font-medium">Ago</span>
+            </div>
+
+            <div class="flex flex-col items-center flex-1 group cursor-pointer">
+                <div class="relative w-full max-w-[3rem] bg-blue-400 hover:bg-blue-500 transition-all duration-300 rounded-t-md h-[65%] shadow-sm">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                        120 OTs
+                    </div>
+                </div>
+                <span class="text-xs text-gray-500 mt-2 font-medium">Sep</span>
+            </div>
+
+            <div class="flex flex-col items-center flex-1 group cursor-pointer">
+                <div class="relative w-full max-w-[3rem] bg-blue-500 hover:bg-blue-600 transition-all duration-300 rounded-t-md h-[55%] shadow-sm">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                        105 OTs
+                    </div>
+                </div>
+                <span class="text-xs text-gray-500 mt-2 font-medium">Oct</span>
+            </div>
+
+            <div class="flex flex-col items-center flex-1 group cursor-pointer">
+                <div class="relative w-full max-w-[3rem] bg-green-500 hover:bg-green-600 transition-all duration-300 rounded-t-md h-[85%] shadow-md border-t-2 border-green-300">
+                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                        142 OTs
+                    </div>
+                </div>
+                <span class="text-xs text-gray-800 mt-2 font-bold">Nov (Act)</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-xl">
+        <h3 class="font-bold text-gray-700 mb-4 border-b pb-2 flex justify-between items-center">
+            Usuarios Online
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">En vivo</span>
+        </h3>
+        <ul class="divide-y divide-gray-200 h-64 overflow-y-auto pr-2 custom-scrollbar">
+            <li class="py-8 text-center text-gray-400 italic text-sm">Cargando...</li>
+        </ul>
+    </div>
+</div>
