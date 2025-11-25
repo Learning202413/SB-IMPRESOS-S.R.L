@@ -1,0 +1,33 @@
+/*
+ * css/postprensa.css
+ * Estilos para el módulo Post-Prensa.
+ */
+
+/* COLORES CORPORATIVOS (Impresos S.R.L.) */
+.color-primary-red { background-color: #E31B23; } 
+.text-primary-red { color: #E31B23; }
+.border-primary-red { border-color: #E31B23; }
+.nav-sidebar-bg { background-color: #334155; }
+
+/* Navegación Sidebar */
+.nav-link { transition: background-color 0.2s, color 0.2s; }
+.nav-link:hover { background-color: #475569; }
+.nav-link.active { background-color: #E31B23; color: white; }
+
+/* Globales */
+body { font-family: 'Inter', sans-serif; }
+
+/* Tablas */
+.table-header-bg { background-color: #334155; }
+
+/* Formularios */
+.form-input { transition: border-color 0.15s, box-shadow 0.15s; }
+.form-input:focus { border-color: #E31B23; box-shadow: 0 0 0 3px rgba(227, 27, 35, 0.3); }
+
+/* Estilos de Botones Específicos (postprensa_calidad.html) */
+.btn-approve { background-color: #16a34a; } /* Verde */
+.btn-approve:hover { background-color: #15803d; }
+.btn-reject { background-color: #ef4444; } /* Rojo */
+.btn-reject:hover { background-color: #dc2626; }
+.btn-complete { background-color: #0e7490; } /* Cyan */
+.btn-complete:hover { background-color: #155e75; }
