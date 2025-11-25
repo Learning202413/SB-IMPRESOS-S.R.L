@@ -1,0 +1,45 @@
+<header class="flex items-center justify-between pb-6 border-b border-gray-200 mb-8">
+    <div class="flex items-center">
+        <button id="sidebar-toggle" class="mr-4 p-2 rounded-full hover:bg-gray-200 text-gray-600 transition">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+        <div>
+            <h1 class="text-3xl font-bold text-gray-800">Cola de Acabados</h1>
+            <p class="text-sm text-gray-500 mt-1">Tareas asignadas y en progreso</p>
+        </div>
+    </div>
+    <span class="text-sm text-gray-500">Módulo: Post-Prensa</span>
+</header>
+
+<div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-6 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4">
+    <div class="relative w-full md:w-96 group">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i data-lucide="search" class="w-5 h-5 text-gray-400 group-hover:text-red-500 transition-colors"></i>
+        </div>
+        <input type="text" id="search-input" placeholder="Buscar por ID de OT o Cliente..." class="w-full pl-10 pr-4 py-2.5 bg-white border border-red-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 hover:border-red-400 transition-all shadow-sm text-gray-700 placeholder-gray-400">
+    </div>
+    
+    <p class="text-gray-600 text-sm">Mostrando tareas asignadas a: <span class="font-bold text-gray-800" id="current-user-name">Equipo de Acabados</span></p>
+</div>
+
+<div class="bg-white shadow-xl shadow-gray-200/50 rounded-xl overflow-hidden border border-gray-100 z-0 relative">
+    <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-slate-800 table-header-bg">
+                <tr>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">ID Orden (OT)</th>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Cliente</th>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Producto (Resumen)</th>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Estación Actual</th>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Estado</th>
+                    <th class="px-6 py-4 text-center text-xs font-semibold text-gray-300 uppercase tracking-wider">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tasks-table-body" class="bg-white divide-y divide-gray-100">
+                </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="pagination-controls" class="mt-4 flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+    </div>
