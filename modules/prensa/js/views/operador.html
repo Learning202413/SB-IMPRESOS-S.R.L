@@ -1,0 +1,156 @@
+<!-- Vista Parcial: modules/prensa/js/views/operador.html -->
+<header class="flex items-center justify-between pb-6 border-b border-gray-200 mb-8">
+    <div class="flex items-center">
+        <button id="sidebar-toggle" class="mr-4 p-2 rounded-full hover:bg-gray-200 text-gray-600 transition">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+        <h1 id="ot-header" class="text-3xl font-bold text-gray-800">Terminal de Operador: Máquina Offset-A</h1>
+    </div>
+    <span class="text-sm text-gray-500">Módulo: Prensa</span>
+</header>
+
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+    
+    <!-- Columna Izquierda: Acciones de Producción -->
+    <div class="xl:col-span-2 space-y-8">
+        
+        <div class="bg-white shadow-xl rounded-xl p-8">
+            <h2 id="actions-header" class="text-2xl font-bold text-gray-800 mb-6 pb-2 border-b flex items-center">
+                <i data-lucide="play-circle" class="w-6 h-6 mr-3 text-primary-red"></i> Acciones de Producción (OT-XXXX)
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- 1. Iniciar Preparación -->
+                <button id="btn-start-prep" class="flex flex-col items-center justify-center p-6 btn-start-prep text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-transform duration-150">
+                    <i data-lucide="settings-2" class="w-12 h-12 mb-3"></i>
+                    <span class="text-xl">1. Iniciar Preparación</span>
+                </button>
+                
+                <!-- 2. Iniciar Impresión -->
+                <button id="btn-start-print" disabled class="flex flex-col items-center justify-center p-6 btn-start-print text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-transform duration-150 disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed">
+                    <i data-lucide="printer" class="w-12 h-12 mb-3"></i>
+                    <span class="text-xl">2. Iniciar Impresión</span>
+                </button>
+                
+                <!-- 3. Reportar Incidencia -->
+                <button id="btn-report-incident" onclick="window.UI.showIncidentModal()" class="flex flex-col items-center justify-center p-6 btn-report text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-transform duration-150">
+                    <i data-lucide="alert-triangle" class="w-12 h-12 mb-3"></i>
+                    <span class="text-xl">Reportar Incidencia</span>
+                </button>
+                
+                <!-- 4. Marcar como Listo -->
+                <button id="btn-finish-job" onclick="window.UI.showFinishModal()" disabled class="flex flex-col items-center justify-center p-6 btn-finish text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-transform duration-150 disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed">
+                    <i data-lucide="check-circle" class="w-12 h-12 mb-3"></i>
+                    <span class="text-xl">3. Listo para Post-Prensa</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Log de Tiempos -->
+        <div class="bg-white shadow-xl rounded-xl p-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 pb-2 border-b flex items-center">
+               <i data-lucide="timer" class="w-5 h-5 mr-3 text-primary-red"></i> Trazabilidad de Tiempos
+            </h2>
+            <ul class="space-y-2 text-sm text-gray-700">
+                <li><strong>Inicio Preparación:</strong> <span id="time-prep-start" class="font-mono text-gray-500"> (Pendiente)</span></li>
+                <li><strong>Inicio Impresión:</strong> <span id="time-print-start" class="font-mono text-gray-500"> (Pendiente)</span></li>
+                <li><strong>Finalización:</strong> <span id="time-finish" class="font-mono text-gray-500"> (Pendiente)</span></li>
+                <li class="border-t pt-2 mt-2 font-bold"><strong>Tiempo de Preparación (Setup):</strong> <span id="time-setup-total" class="font-mono text-blue-600"> (Calculando...)</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Columna Derecha: Información de Tarea -->
+    <div class="xl:col-span-1 space-y-8">
+        
+        <!-- Tarea Actual -->
+        <div class="bg-white shadow-xl rounded-xl p-6 border-4 border-red-500">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 pb-2 border-b flex items-center">
+               <i data-lucide="play" class="w-5 h-5 mr-3 text-red-600"></i> Tarea Actual
+            </h2>
+            <div id="task-details-current" class="space-y-3">
+                <p><strong class="text-gray-600">ID:</strong> <span id="task-ot-id" class="font-bold text-lg text-red-600">OT-XXXX</span></p>
+                <p><strong class="text-gray-600">Producto:</strong> <span id="task-product">Cargando...</span></p>
+                <p><strong class="text-gray-600">Cliente:</strong> <span id="task-client">Cargando...</span></p>
+                <p><strong class="text-gray-600">Papel:</strong> <span id="task-paper">Cargando...</span></p>
+                <p><strong class="text-gray-600">Tintas:</strong> <span id="task-inks">Cargando...</span></p>
+                <a href="#" id="task-art-link" class="text-blue-600 hover:underline flex items-center" target="_blank">
+                    <i data-lucide="file-image" class="w-4 h-4 mr-1"></i> Ver Arte Final (Placas)
+                </a>
+            </div>
+        </div>
+
+        <!-- Siguiente Tarea -->
+        <div class="bg-white shadow-xl rounded-xl p-6 opacity-70">
+             <h2 class="text-xl font-bold text-gray-800 mb-4 pb-2 border-b flex items-center">
+               <i data-lucide="skip-forward" class="w-5 h-5 mr-3 text-gray-500"></i> Siguiente en Cola
+            </h2>
+            <div id="task-details-next" class="space-y-3">
+                <p><strong class="text-gray-600">ID:</strong> <span class="font-bold text-lg text-gray-700">OT-YYYY</span></p>
+                <p><strong class="text-gray-600">Producto:</strong> <span class="font-medium text-gray-700">Siguiente Producto...</span></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Definiciones de Modales (para inyección) -->
+<div id="modal-definitions" class="hidden">
+
+    <!-- Modal: Reportar Incidencia -->
+    <div id="incident-modal-content">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-xl bg-white">
+            <form id="incident-form">
+                <h3 class="text-xl font-bold mb-4 text-red-600 flex items-center"><i data-lucide="alert-triangle" class="w-6 h-6 mr-2"></i> Reportar Incidencia</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label for="incident-type" class="block text-sm font-medium text-gray-700">Tipo de Incidencia</label>
+                        <select id="incident-type" class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm">
+                            <option>Atasco de papel</option>
+                            <option>Color incorrecto</option>
+                            <option>Falta tinta</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="incident-details" class="block text-sm font-medium text-gray-700">Detalles</label>
+                        <textarea id="incident-details" rows="3" class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm" placeholder="Describe el problema..."></textarea>
+                    </div>
+                    <button type="button" class="w-full px-4 py-2 bg-yellow-500 text-white font-semibold rounded-lg shadow-md hover:bg-yellow-600 transition">
+                        <i data-lucide="phone-call" class="w-4 h-4 inline mr-2"></i> Solicitar Soporte Técnico
+                    </button>
+                </div>
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button type="button" onclick="window.UI.hideModal('incident-modal-container')" class="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400">Cancelar</button>
+                    <button type="submit" id="confirm-incident-button" class="px-4 py-2 color-primary-red text-white rounded-lg hover:bg-red-700">Guardar Reporte</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Finalizar Tarea (Consumo Real) -->
+    <div id="finish-modal-content">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-xl bg-white">
+            <form id="finish-form">
+                <h3 class="text-xl font-bold mb-4 text-green-600 flex items-center"><i data-lucide="check-circle" class="w-6 h-6 mr-2"></i> Finalizar Tarea: OT-XXXX</h3>
+                <p class="text-gray-600 mb-6">Registra el consumo real y el desperdicio antes de enviar a Post-Prensa.</p>
+                <div class="space-y-4">
+                    <div>
+                        <label for="consumo-real" class="block text-sm font-medium text-gray-700">Consumo Real (Pliegos)</label>
+                        <input type="number" id="consumo-real" value="1100" class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm">
+                    </div>
+                    <div>
+                        <label for="desperdicio" class="block text-sm font-medium text-gray-700">Desperdicio (Pliegos)</label>
+                        <input type="number" id="desperdicio" value="100" class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg shadow-sm">
+                    </div>
+                </div>
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button type="button" onclick="window.UI.hideModal('finish-modal-container')" class="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400">Cancelar</button>
+                    <button type="submit" id="confirm-finish-button" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Confirmar y Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
