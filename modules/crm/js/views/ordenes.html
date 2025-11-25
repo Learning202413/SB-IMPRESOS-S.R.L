@@ -1,0 +1,129 @@
+<header class="flex items-center justify-between pb-6 border-b border-gray-200 mb-8">
+    <div class="flex items-center">
+        <button id="sidebar-toggle" class="mr-4 p-2 rounded-full hover:bg-gray-200 text-gray-600 transition">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+        <div>
+            <h1 class="text-3xl font-bold text-gray-800">Órdenes y Cotizaciones</h1>
+            <p class="text-sm text-gray-500 mt-1">Gestión de trabajos, producción y ventas</p>
+        </div>
+    </div>
+</header>
+
+<div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-6 flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0 lg:space-x-4">
+    
+    <div class="relative w-full lg:w-96 group">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i data-lucide="search" class="w-5 h-5 text-gray-400 group-hover:text-red-500 group-focus-within:text-red-600 transition-colors"></i>
+        </div>
+        <input type="text" id="search-input" placeholder="Buscar por Código, Cliente o OT..." class="w-full pl-10 pr-4 py-2.5 bg-white border border-red-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 hover:border-red-400 transition-all shadow-sm text-gray-700 placeholder-gray-400">
+    </div>
+    
+    <a href="#/orden-detalle/new" class="w-full lg:w-auto flex items-center justify-center px-5 py-2.5 text-sm bg-red-600 text-white font-medium rounded-lg shadow-lg shadow-red-600/30 hover:bg-red-700 hover:shadow-red-600/50 hover:-translate-y-0.5 transition-all duration-200">
+        <i data-lucide="plus-circle" class="w-5 h-5 mr-2"></i>
+        Nueva Cotización
+    </a>
+</div>
+
+<div class="bg-white shadow-xl shadow-gray-200/50 rounded-xl overflow-hidden border border-gray-100 z-0 relative">
+    
+    <div class="border-b border-gray-100 bg-gray-50/50 px-6 pt-2 overflow-x-auto">
+        <nav class="flex space-x-8 min-w-max" aria-label="Tabs">
+            <button type="button" data-tab="activas" class="tab-button border-b-2 py-4 px-1 text-sm font-medium border-red-600 text-red-600 hover:text-red-700 transition duration-150 tab-active flex items-center">
+                <i data-lucide="file-clock" class="w-4 h-4 mr-2"></i> Cotizaciones Activas
+            </button>
+            
+            <button type="button" data-tab="ots" class="tab-button border-b-2 py-4 px-1 text-sm font-medium border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition duration-150 flex items-center">
+                <i data-lucide="settings" class="w-4 h-4 mr-2"></i> En Producción (OT)
+            </button>
+
+            <button type="button" data-tab="completadas" class="tab-button border-b-2 py-4 px-1 text-sm font-medium border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition duration-150 flex items-center">
+                <i data-lucide="check-circle" class="w-4 h-4 mr-2"></i> Completadas
+            </button>
+
+            <button type="button" data-tab="rechazadas" class="tab-button border-b-2 py-4 px-1 text-sm font-medium border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 transition duration-150 flex items-center">
+                <i data-lucide="archive" class="w-4 h-4 mr-2"></i> Rechazadas
+            </button>
+        </nav>
+    </div>
+
+    <div id="tab-activas" class="tab-content animate-fade-in-up p-6">
+        <div class="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-slate-800 table-header-bg">
+                    <tr>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Código</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Cliente</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Resumen</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Total</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Fecha</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Estado</th>
+                        <th class="px-6 py-4 text-center text-xs font-semibold text-gray-300 uppercase tracking-wider">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-100"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="tab-ots" class="tab-content hidden animate-fade-in-up p-6">
+        <div class="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-slate-800 table-header-bg">
+                    <tr>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">ID OT</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Cliente</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Resumen</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Total</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Fase Actual</th>
+                        <th class="px-6 py-4 text-center text-xs font-semibold text-gray-300 uppercase tracking-wider">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-100"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="tab-completadas" class="tab-content hidden animate-fade-in-up p-6">
+        <div class="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-slate-800 table-header-bg"> 
+                    <tr>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">ID OT</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Cliente</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Resumen</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Total</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Estado Final</th>
+                        <th class="px-6 py-4 text-center text-xs font-semibold text-gray-300 uppercase tracking-wider">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-100"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="tab-rechazadas" class="tab-content hidden animate-fade-in-up p-6">
+        <div class="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-slate-800 table-header-bg">
+                    <tr>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Código</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Cliente</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Resumen</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Total</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Fecha</th>
+                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Estado</th>
+                        <th class="px-6 py-4 text-center text-xs font-semibold text-gray-300 uppercase tracking-wider">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-100"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="pagination-controls" class="mt-4 flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+    <span class="text-sm text-gray-600">
+        Mostrando <span id="start-count" class="font-bold text-gray-900">0</span> a <span id="end-count" class="font-bold text-gray-900">0</span> de <span id="total-count" class="font-bold text-gray-900">0</span> resultados
+    </span>
+    </div>
